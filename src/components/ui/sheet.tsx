@@ -76,6 +76,12 @@ const SheetContent = React.forwardRef<
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}
+
+        {/* Fallback title untuk accessibility jika tidak ada SheetTitle */}
+        {!React.Children.toArray(children).some(
+          (child) => React.isValidElement(child) && child.type === SheetTitle
+        ) && <SheetTitle className="sr-only">Dialog</SheetTitle>}
+
         {children}
       </SheetPrimitive.Content>
     </SheetPortal>
